@@ -2437,6 +2437,11 @@
   margin-left: 6px;
   min-height: 30px;
 }
+.so-panels-dialog .so-visual-styles .style-input-wrapper .wp-color-result,
+.block-editor-page .so-visual-styles .style-input-wrapper .wp-color-result,
+.wp-customizer .so-visual-styles .style-input-wrapper .wp-color-result {
+  margin: 0;
+}
 .so-panels-dialog .so-visual-styles .style-field-measurement .measurement-inputs,
 .block-editor-page .so-visual-styles .style-field-measurement .measurement-inputs,
 .wp-customizer .so-visual-styles .style-field-measurement .measurement-inputs {

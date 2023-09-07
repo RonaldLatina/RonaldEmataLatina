@@ -1897,7 +1897,7 @@
 			FLBuilder._updateLayout();
 
 			if ( FLBuilder._shapesEdited === true ) {
-				window.location.reload(true);
+				window.parent.location.reload(true);
 			}
 		},
 
@@ -9440,6 +9440,12 @@
 				$( '.fl-builder-hidden-editor' ).each( function() {
 					FLBuilder._initEditorField.call( this, window );
 				} );
+			}
+
+			if ( 'undefined' !== typeof window.parent.acf ) {
+				window.parent.acf.add_filter( 'wysiwyg_tinymce_settings', function( mceInit, id ) {
+					return $.extend( {}, tinyMCEPreInit.mceInit.flbuildereditor, mceInit );
+				} )
 			}
 		},
 

@@ -5086,7 +5086,6 @@ input[type=number].fl-field-popup-slider-focus {
 }
 body > span.select2-container.select2-container--open {
     z-index: 9999999;
-	position: fixed !important;
 }
 
 /* Multiple Photo Fields */

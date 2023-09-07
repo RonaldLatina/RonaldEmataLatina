@@ -3,8 +3,8 @@ Tags: page builder, responsive, parallax, widgets, blocks, gallery, layout, grid
 Requires at least: 4.7
 Tested up to: 6.3
 Requires PHP: 5.6.20
-Stable tag: 2.25.2
-Build time: 2023-08-13T23:04:54+02:00
+Stable tag: 2.25.3
+Build time: 2023-08-26T11:39:28+02:00
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Donate link: https://siteorigin.com/downloads/premium/
@@ -120,6 +120,12 @@ Page Builder is compatible with the vast majority of third-party plugins and wid
 SiteOrigin offers a single premium plugin that enhances and extends Page Builder, the Widgets Bundle, SiteOrigin CSS and all of our free themes. Find out more about [SiteOrigin Premium](https://siteorigin.com/downloads/premium/) and the powerful addons it offers.
 
 == Changelog ==
+
+= 2.25.3 - 26 August 2023 =
+* Fixed box shadow related settings. Added missing `break` statement in the `styles-admin.php` file for better code structure and readability.
+* Allowed fields that store arrays to have a `0` index, enhancing the functionality of the Advanced Custom Fields (ACF) compatibility.
+* Removed the check for the allowed state in the SiteOrigin Premium Copy Paste feature, improving cross-domain copy and paste functionality.
+* Removed extra spacing from the WordPress color picker in the admin.less file for cleaner UI.
 
 = 2.25.2 - 13 August 2023 =
 * Updated the Build submodule.

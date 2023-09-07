@@ -1,3 +1,34 @@
+<h4>2.7.2 - 08/24/2023</h4>
+<strong>Requirements</strong>
+<ul>
+	<li>PHP 7 now required for this and future updates of Beaver Builder.  WordPress dropped support for PHP 5.6 in WordPress 6.3 and we are following that(#2767)<li>
+</ul>
+
+
+<strong>Enhancements</strong>
+<ul>
+	<li>When shortcodes in CSS/JS is enabled, enable for node CSS/JS also (#2832)</li>
+	<li>Developer: Add new hooks <code>fl_builder_before_render_column</code> & <code>fl_builder_after_render_column</code> (#1647)</li>
+	<li>Prevent redirect to ?fl_builder when iFrame is disabled and you try to load the iFrame UI builder UI via direct URL (#2764)</li>
+	<li>Rename Reusable Blocks group to WordPress Patterns due to rename in WP 6.3 (#2761)</li>
+	<li>Accessibility: You can now escape out of submenus in Menu Module (#2496)</li>
+	<li>Row BackGround Videos: Show fallback photo while Vimeo video loads (#151)</li>
+</ul>
+
+<strong>Bug Fixes</strong>
+<ul>
+	<li>Fix UI freezing after adding a custom row shape (#2841)</li>
+	<li>Fix conflicts with Appointment Hour Booking and LearnDash when iFrame UI enabled (#2837 & 2743)</li>
+	<li>Fix dragging a saved node when search in content panel is active (#2799)</li>
+	<li>Hide Advanced settings in WP Admin for Network Admin (#2762)</li>
+	<li>Posts Module: Fix loading text not being translatable (#2770)</li>
+	<li>Fix font family select scrolling down the page when iFrame UI is disabled (#2747)</li>
+	<li>Fix images going outside the container on small devices when reverse stacking is set (#2754)</li>
+	<li>Video Module: Fix lightbox when using YouTube Privacy Enhanced Mode (#2688)</li>
+	<li>ACF: Fix ACF Text editors not loading correctly in ACF Blocks used in our UI (#2823)</li>
+	<li>Fix scroll bar freezing when clicked in Content panel (#2875)</li>
+</ul>
+
 <h4>2.7.1.1 - 07/27/2023</h4>
 <strong>Hotfix</strong>
 <ul>

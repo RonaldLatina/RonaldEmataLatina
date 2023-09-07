@@ -53,6 +53,7 @@
 }
 .fl-col-group .fl-col:not(.fl-col-small-custom-width) {
 	flex-basis: 100%;
+	max-width: 100%;
 }
 
 /* Columns

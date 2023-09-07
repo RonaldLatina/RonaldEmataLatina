@@ -1411,23 +1411,26 @@ final class FLBuilder {
 			'accessory' => isset( $key_shortcuts['responsiveEditing'] ) ? $key_shortcuts['responsiveEditing']['keyLabel'] : null,
 		);
 
-		$tools_view['items'][40] = array(
-			'type' => 'separator',
-		);
+		if ( current_user_can( 'delete_others_posts' ) || FLBuilderModel::user_has_unfiltered_html() ) {
+			$tools_view['items'][40] = array(
+				'type' => 'separator',
+			);
 
-		$tools_view['items'][50] = array(
-			'label'     => __( 'Layout CSS & Javascript', 'fl-builder' ),
-			'type'      => 'event',
-			'eventName' => 'showLayoutSettings',
-			'accessory' => isset( $key_shortcuts['showLayoutSettings'] ) ? $key_shortcuts['showLayoutSettings']['keyLabel'] : null,
-		);
-
-		$tools_view['items'][60] = array(
-			'label'     => __( 'Global Settings', 'fl-builder' ),
-			'type'      => 'event',
-			'eventName' => 'showGlobalSettings',
-			'accessory' => isset( $key_shortcuts['showGlobalSettings'] ) ? $key_shortcuts['showGlobalSettings']['keyLabel'] : null,
-		);
+			$tools_view['items'][50] = array(
+				'label'     => __( 'Layout CSS & Javascript', 'fl-builder' ),
+				'type'      => 'event',
+				'eventName' => 'showLayoutSettings',
+				'accessory' => isset( $key_shortcuts['showLayoutSettings'] ) ? $key_shortcuts['showLayoutSettings']['keyLabel'] : null,
+			);
+		}
+		if ( current_user_can( 'delete_others_posts' ) ) {
+			$tools_view['items'][60] = array(
+				'label'     => __( 'Global Settings', 'fl-builder' ),
+				'type'      => 'event',
+				'eventName' => 'showGlobalSettings',
+				'accessory' => isset( $key_shortcuts['showGlobalSettings'] ) ? $key_shortcuts['showGlobalSettings']['keyLabel'] : null,
+			);
+		}
 
 		if ( $is_lite || defined( 'FL_THEME_BUILDER_VERSION' ) ) {
 			$tools_view['items'][65] = array(
@@ -1663,6 +1666,11 @@ final class FLBuilder {
 				'keyCode' => 'shift+t',
 			),
 		);
+
+		if ( ! current_user_can( 'delete_others_posts' ) ) {
+			unset( $data['showGlobalSettings'] );
+			unset( $data['showLayoutSettings'] );
+		}
 
 		$data = apply_filters( 'fl_builder_keyboard_shortcuts', $data );
 
@@ -2693,7 +2701,19 @@ final class FLBuilder {
 		$visible = FLBuilderModel::is_node_visible( $col );
 
 		if ( $active || $visible ) {
+			/**
+			 * Before rendering a column
+			 * @see fl_builder_before_render_column
+			 */
+			do_action( 'fl_builder_before_render_column', $col );
+
 			include FL_BUILDER_DIR . 'includes/column.php';
+
+			/**
+			 * After rendering a column
+			 * @see fl_builder_after_render_column
+			 */
+			do_action( 'fl_builder_after_render_column', $col );
 		} else {
 			/**
 			 * Fires in place of a hidden column.

@@ -57,6 +57,7 @@ final class FLBuilderCompatibility {
 		add_action( 'pre_get_posts', array( __CLASS__, 'hide_tribe_child_recurring_events' ) );
 		add_action( 'wp_print_scripts', array( __CLASS__, 'convert_box_bb' ), 20 );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'yith_woocommerce_affiliates' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'fix_jquery_dialog' ) );
 
 		// Filters
 		add_filter( 'fl_builder_is_post_editable', array( __CLASS__, 'bp_pages_support' ), 11, 2 );
@@ -1305,6 +1306,16 @@ final class FLBuilderCompatibility {
 	public static function fix_iubenda( $options ) {
 		$options['parse'] = isset( $_GET['fl_builder'] ) ? false : $options['parse'];
 		return $options;
+	}
+
+	/**
+	 * Fix jQuery Dialog Style from interfering with our iFrame UI
+	 * Fixes conflict with Appointment Hour Booking and LearnDash
+	 */
+	public static function fix_jquery_dialog() {
+		if ( class_exists( 'FLBuilderModel' ) && FLBuilderUIIFrame::is_ui_request() ) {
+			wp_deregister_style( 'wp-jquery-ui-dialog' );
+		}
 	}
 }
 FLBuilderCompatibility::init();

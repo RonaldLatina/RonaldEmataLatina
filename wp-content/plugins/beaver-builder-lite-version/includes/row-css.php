@@ -316,6 +316,21 @@ FLBuilderCSS::rule( array(
 	),
 ) );
 
+// Background Video Fallback
+$video_data = FLBuilderUtils::get_video_data( do_shortcode( $settings->bg_video_service_url ) );
+
+FLBuilderCSS::rule( array(
+	'selector' => ".fl-node-$id .fl-bg-video",
+	'enabled'  => 'video_service' === $settings->bg_video_source && isset( $video_data['type'] ) && 'vimeo' == $video_data['type'] && ! empty( $settings->bg_video_fallback_src ),
+	'props'    => array(
+		'background-image'      => $settings->bg_video_fallback_src,
+		'background-repeat'     => 'no-repeat',
+		'background-position'   => 'center center',
+		'background-attachment' => 'fixed',
+		'background-size'       => 'cover',
+	),
+) );
+
 // Border
 FLBuilderCSS::border_field_rule( array(
 	'settings'     => $settings,
